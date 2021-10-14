@@ -16,7 +16,8 @@ RUN apt-get update && \
    apt-get -y install docker-ce
 
 # install jenkins plugins
-COPY --chown=jenkins:jenkins plugins.txt /usr/share/jenkins/ref/plugins.txt
+RUN curl https://raw.githubusercontent.com/mprayliu/rancher-devsecops-workshop/main/setup/jenkins/plugins.txt > plugins.txt
+RUN cp  plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
 #id_rsa.pub file will be saved at /root/.ssh/
